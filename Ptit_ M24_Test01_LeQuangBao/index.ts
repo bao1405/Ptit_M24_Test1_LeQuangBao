@@ -1,5 +1,4 @@
-
-// import { v4 as uuidv4 } from "uuid";
+//  import { v4 as uuidv4 } from "uuid";
 
 interface IFeedback {
     id: string;
@@ -132,10 +131,10 @@ class Feedback implements IFeedback {
                 if (feedbackName) {
                     const updatingFeedbackIndex = this.listFeedbackLocal.findIndex(fb => fb.name === feedbackName);
                     if (updatingFeedbackIndex !== -1) {
-                        // Nếu feedback đã tồn tại, cập nhật điểm số
+                        // Nếu đã có phản hồi, hãy cập nhật điểm
                         this.listFeedbackLocal[updatingFeedbackIndex].score = this.scoreActive;
                     } else {
-                        // Nếu feedback chưa tồn tại, tạo mới và thêm vào mảng
+                        // Nếu phản hồi không tồn tại, hãy tạo một phản hồi mới và thêm nó vào mảng
                         const newFeedback: IFeedback = {
                             id: uuidv4(),
                             name: feedbackName,
@@ -143,16 +142,20 @@ class Feedback implements IFeedback {
                         };
                         this.listFeedbackLocal.unshift(newFeedback);
                     }
-                    // Lưu danh sách feedback vào local storage với key là "feedbacks"
+                    // lưu thông tin mới vào localstorage
                     localStorage.setItem("feedbacks", JSON.stringify(this.listFeedbackLocal));
-                    // Cập nhật giao diện
+                    // Cập nhật giao diện người dùng
                     this.renderListFeedback();
                     this.handleAverageRating();
-                    // Xóa giá trị trong input
+                    // Đặt lại điểm thành 10
+                    this.scoreActive = 10;
+                    // Cập nhật giao diện người dùng để phản ánh sự thay đổi điểm số
+                    this.renderListButtonScore();
+                    // Xóa giá trị đầu vào
                     this.feedbackInput.value = "";
-                    // Cập nhật số lượng đánh giá
+                    // Cập nhật số đánh giá
                     this.reviewNumber.innerHTML = this.listFeedbackLocal.length.toString();
-                    // Loại bỏ class "btn-dark" nếu có
+                    // Xóa lớp "btn-dark" nếu có
                     this.btnSend.classList.remove("btn-dark");
                 }
             }
