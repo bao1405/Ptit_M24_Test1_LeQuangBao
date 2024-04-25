@@ -214,7 +214,7 @@ class Feedback {
             let averageRating = totalScoreFeedback / this.listFeedbackLocal.length;
             this.averageRate.innerHTML = averageRating.toFixed(1);
         } else {
-            this.averageRate.innerHTML = "0";
+            this.averageRate.innerHTML = "0.0";
         }
     }
 }
