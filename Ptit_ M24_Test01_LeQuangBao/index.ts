@@ -2,7 +2,11 @@
 // import { v4 as uuidv4 } from "uuid";
 class Feedback {
     private scoreActive: number;
-    private listFeedbackLocal: { feedbackId: string, score: number, content: string }[];
+    private listFeedbackLocal: { 
+        feedbackId: string, 
+        score: number, 
+        content: string 
+    }[];
     private feedbackInput: HTMLInputElement;
     private error: HTMLElement;
     private btnSend: HTMLElement;
